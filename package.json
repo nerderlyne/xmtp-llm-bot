@@ -1,0 +1,33 @@
+{
+  "name": "xmtp-llm-bot-starter",
+  "version": "0.0.0",
+  "description": "A XMTP LLM bot starter",
+  "main": "./dist/src/index.js",
+  "author": "Shivanshi Tyagi",
+  "license": "MIT",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "start": "node dist/src/index.js",
+    "dev": "tsx src/index.ts --watch",
+    "build": "tsc",
+    "clean": "rimraf dist",
+    "format": "prettier --write \"src/**/*.ts\""
+  },
+  "devDependencies": {
+    "@types/node": "^18.15.3",
+    "prettier": "^2.8.5",
+    "rimraf": "^5.0.1",
+    "tsx": "^3.12.7",
+    "typescript": "^5.1.3"
+  },
+  "dependencies": {
+    "@xmtp/content-type-remote-attachment": "^1.0.7",
+    "@xmtp/xmtp-js": "^10.0.0",
+    "dotenv": "^16.3.1",
+    "ethers": "v5",
+    "openai": "^4.0.1"
+  }
+}
