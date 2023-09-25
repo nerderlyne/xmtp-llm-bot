@@ -24,8 +24,8 @@
     "typescript": "^5.1.3"
   },
   "dependencies": {
-    "@xmtp/content-type-remote-attachment": "^1.0.7",
-    "@xmtp/xmtp-js": "^10.0.0",
+    "@xmtp/grpc-api-client": "^0.2.4",
+    "@xmtp/xmtp-js": "^11.0.0",
     "dotenv": "^16.3.1",
     "ethers": "v5",
     "openai": "^4.0.1"

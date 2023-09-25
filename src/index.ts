@@ -1,14 +1,11 @@
 import { config } from "dotenv";
 import {
-  AttachmentCodec,
-  RemoteAttachmentCodec,
-} from "@xmtp/content-type-remote-attachment";
-import {
   Client,
   ListMessagesOptions,
   SortDirection,
   DecodedMessage,
 } from "@xmtp/xmtp-js";
+import { GrpcApiClient } from "@xmtp/grpc-api-client";
 import { utils, Wallet } from "ethers";
 import OpenAI from "openai";
 
@@ -42,12 +39,8 @@ async function createClient(): Promise<Client> {
 
   const client = await Client.create(wallet, {
     env: process.env.XMTP_ENV || "production",
+    apiClientFactory: GrpcApiClient.fromOptions,
   });
-
-  // Register the codecs. AttachmentCodec is for local attachments (<1MB)
-  client.registerCodec(new AttachmentCodec());
-  //RemoteAttachmentCodec is for remote attachments (>1MB) using thirdweb storage
-  client.registerCodec(new RemoteAttachmentCodec());
 
   await client.publishUserContact();
 
@@ -134,8 +127,7 @@ export const handleChat = async (context: HandlerContext) => {
         messages: [
           {
             role: "system",
-            content:
-              "You are a helpful assistant.",
+            content: "You are a helpful assistant.",
           },
           ...messageHistory,
           {
